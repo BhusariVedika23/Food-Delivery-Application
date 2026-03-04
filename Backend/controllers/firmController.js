@@ -13,10 +13,6 @@ const storage = multer.diskStorage({
     },
 });
 const uploads = multer({ storage: storage });
-
-/**
- * Add a new firm
- */
 const addFirm = async (req, res) => {
     try {
         const { firmName, area, category, region, offer } = req.body;
@@ -49,10 +45,6 @@ const addFirm = async (req, res) => {
     }
 };
 
-
-/**
- * Delete a firm by ID
- */
 const deleteFirmById = async (req, res) => {
     try {
         const firmId = req.params.firmId;

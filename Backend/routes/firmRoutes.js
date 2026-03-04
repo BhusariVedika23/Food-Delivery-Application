@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const firmController = require("../controllers/firmController");  // Import all functions
-const verifyToken = require("../middlewares/verifyToken"); // Ensure correct middleware path
+const verifyToken = require("../middlewares/verifyToken"); 
 
 //  Add a new firm (protected route)
 router.post("/add-firm", verifyToken, firmController.uploads.single("image"), firmController.addFirm);
