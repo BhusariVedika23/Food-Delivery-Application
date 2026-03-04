@@ -2,6 +2,7 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { AdminAuthContext } from "../context/AdminAuthContext";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const AdminLogin = () => {
   const { adminLogin } = useContext(AdminAuthContext);
@@ -14,7 +15,7 @@ const AdminLogin = () => {
     setError(null);
 
     try {
-      const response = await axios.post("http://localhost:4000/vendor/login", {
+      const response = await axios.post(`${BASE_URL}/vendor/login`, {
         email,
         password,
       });

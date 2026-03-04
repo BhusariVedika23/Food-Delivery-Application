@@ -2,13 +2,14 @@ import { useParams } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import axios from "axios";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const Restaurant = () => {
   const { id } = useParams();
   const [restaurant, setRestaurant] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/api/restaurants/${id}`)
+    axios.get(`${BASE_URL}/api/restaurants/${id}`)
       .then(response => setRestaurant(response.data))
       .catch(error => console.error(error));
   }, [id]);

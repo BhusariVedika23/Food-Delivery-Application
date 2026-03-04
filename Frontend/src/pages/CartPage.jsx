@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../context/CartContext";
 import { Button, Container, ListGroup, Row, Col, Card } from "react-bootstrap";
 import axios from "axios";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const CartPage = () => {
   const { cart, removeFromCart, clearCart } = useContext(CartContext);
@@ -15,7 +16,7 @@ const CartPage = () => {
 
   const handleCheckout = async () => {
     try {
-      const response = await axios.post("http://localhost:4000/api/orders", {
+      const response = await axios.post(`${BASE_URL}/api/orders`, {
         items: cart.map((item) => ({
           productId: item._id,
           name: item.name,

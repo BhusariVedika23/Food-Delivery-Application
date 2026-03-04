@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 import { Container } from "react-bootstrap";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const OrderHistory = () => {
   const { user } = useContext(AuthContext);
@@ -10,7 +11,7 @@ const OrderHistory = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/order-history?userId=${user.userId}`);
+        const response = await axios.get(`${BASE_URL}/order-history?userId=${user.userId}`);
         setOrders(response.data);
       } catch (error) {
         console.error("Error fetching order history:", error);

@@ -3,6 +3,7 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -16,7 +17,7 @@ const Login = () => {
     setError(null);
 
     try {
-      const response = await axios.post("http://localhost:4000/vendor/login", {
+      const response = await axios.post(`${BASE_URL}/vendor/login`, {
         email,
         password,
       });

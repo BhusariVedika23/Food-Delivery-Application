@@ -2,6 +2,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const Signup = () => {
   const [username, setUsername] = useState("");
@@ -20,7 +21,7 @@ const Signup = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:4000/vendor/register", { 
+      const response = await axios.post(`${BASE_URL}/vendor/register`, { 
         username,  //  Sending username as required by the backend
         email, 
         password 

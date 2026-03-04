@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const AdminPanel = () => {
   const [firms, setFirms] = useState([]);
@@ -20,7 +21,7 @@ const AdminPanel = () => {
     }
 
     axios
-      .get("http://localhost:4000/firm/all-firms", {
+      .get(`${BASE_URL}/firm/all-firms`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

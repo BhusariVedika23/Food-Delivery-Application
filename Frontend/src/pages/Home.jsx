@@ -5,6 +5,7 @@ import axios from "axios";
 import Footer from "../components/Footer";
 import { AuthContext } from "../context/AuthContext";
 import { CartContext } from "../context/CartContext";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const Home = () => {
   const [restaurants, setRestaurants] = useState([]); // Stores all restaurants
@@ -13,11 +14,11 @@ const Home = () => {
   const { user } = useContext(AuthContext);
   const { cart, addToCart } = useContext(CartContext);
 
-  // 🔹 Fetch Restaurants on Load
+  //  Fetch Restaurants on Load
   useEffect(() => {
     const fetchRestaurants = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/firm/all-firms");
+        const response = await axios.get(`${BASE_URL}/firm/all-firms`);
         setRestaurants(response.data);
       } catch (error) {
         console.error("Error fetching restaurants:", error);
@@ -27,7 +28,7 @@ const Home = () => {
     fetchRestaurants();
   }, []);
 
-  // 🔹 Fetch Products when a Restaurant is clicked
+  //  Fetch Products when a Restaurant is clicked
   const handleSelectRestaurant = async (restaurant) => {
     console.log("Selected Restaurant:", restaurant); // Debugging
   
@@ -42,7 +43,7 @@ const Home = () => {
   
     try {
       const response = await axios.get(
-        `http://localhost:4000/product/${firmId}/products` // Use firmId or _id
+        `${BASE_URL}/product/${firmId}/products` // Use firmId or _id
       );
       console.log("API Response:", response.data); // Debugging
   
@@ -94,7 +95,7 @@ const Home = () => {
         </div>
       </div>
 
-      {/* 🔹 Restaurants Section */}
+      {/*  Restaurants Section */}
       <h2 className="mt-4 mb-3 fw-bold" style={{ fontSize: "2rem" }}>
         Top Restaurants
       </h2>
@@ -108,7 +109,7 @@ const Home = () => {
             >
               <Card.Img
                 variant="top"
-                src={`http://localhost:4000/uploads/${restaurant.image}`} // Restaurant Image
+                src={`${BASE_URL}/uploads/${restaurant.image}`} // Restaurant Image
                 alt={restaurant.firmName}
                 style={{ height: "200px", objectFit: "cover" }}
               />
@@ -122,7 +123,7 @@ const Home = () => {
         ))}
       </Row>
 
-      {/* 🔹 Products of Selected Restaurant */}
+      {/*  Products of Selected Restaurant */}
       {selectedRestaurant && (
         <div className="mt-5">
           <h3 className="fw-bold">{selectedRestaurant.firmName} - Products</h3>
@@ -134,7 +135,7 @@ const Home = () => {
                     {/* Product Image */}
                     <Card.Img
                     variant="top"
-                    src={`http://localhost:4000/uploads/${product.image}`} // Dynamically set image URL
+                    src={`${BASE_URL}/uploads/${product.image}`} // Dynamically set image URL
                     alt={product.productName}
                     style={{ height: "150px", objectFit: "cover" }}
                     />
@@ -158,7 +159,7 @@ const Home = () => {
         </div>
       )}
 
-      {/* 🔹 Cart Section */}
+      {/*  Cart Section */}
       {cart.length > 0 && (
         <div className="mt-5">
           <h3 className="fw-bold">Cart</h3>

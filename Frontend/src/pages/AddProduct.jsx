@@ -1,6 +1,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const AddProduct = () => {
   const [firmId, setFirmId] = useState(""); // Selected firm ID
@@ -51,7 +52,7 @@ const AddProduct = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:4000/product/add-product/${firmId}`,
+        `${BASE_URL}/product/add-product/${firmId}`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },

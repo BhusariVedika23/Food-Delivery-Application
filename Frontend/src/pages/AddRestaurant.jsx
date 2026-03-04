@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const AddFirm = () => {
   const [firmName, setFirmName] = useState("");
@@ -36,7 +37,7 @@ const AddFirm = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:4000/firm/add-firm", formData, {
+      const response = await axios.post(`${BASE_URL}/firm/add-firm`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`, 
