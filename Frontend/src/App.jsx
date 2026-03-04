@@ -18,6 +18,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
 import { AdminAuthProvider } from "./context/AdminAuthContext";
 //import VendorDashboard from "./pages/VendorDashboard";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const App = () => {
